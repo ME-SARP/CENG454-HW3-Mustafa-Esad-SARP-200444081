@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem; // Yeni Input sistemi için bu satır şart!
 
 public class EnergyCore : MonoBehaviour, IDamageable
 {
@@ -34,7 +35,14 @@ public class EnergyCore : MonoBehaviour, IDamageable
     {
         isDestroyed = true;
         Debug.Log("Core Breach! Enerji çekirdeği yok edildi!");
-        
         GameEvents.TriggerGameOver(false);
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            TakeDamage(10f);
+        }
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem; 
 
 public class GameManager : MonoBehaviour
 {
@@ -23,17 +24,17 @@ public class GameManager : MonoBehaviour
 
         if (isWin)
         {
-            Debug.Log("TEBRİKLER! Tesisi başarıyla savundunuz ve kazandınız!");
+            Debug.Log("TEBRİKLER! Tesisi basariyla savundunuz ve kazandiniz!");
         }
         else
         {
-            Debug.Log("OYUN BİTTİ! Çekirdek patladı, tesis çöktü!");
+            Debug.Log("OYUN BİTTİ! Cekirdek patladi, tesis coktu!");
         }
     }
 
     private void Update()
     {
-        if (!isGameActive && Input.GetKeyDown(KeyCode.R))
+        if (!isGameActive && Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
