@@ -15,8 +15,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
-
+        transform.Translate(Vector3.up * speed * Time.deltaTime, Space.Self);
         currentLifeTimer -= Time.deltaTime;
         if (currentLifeTimer <= 0f)
         {
@@ -35,6 +34,15 @@ public class Projectile : MonoBehaviour
             }
 
             gameObject.SetActive(false); 
+        }
+        
+        else if (collision.gameObject.name.Contains("PowerUpPickup"))
+        {
+            PowerUpPickup pickup = collision.GetComponent<PowerUpPickup>();
+            if (pickup != null)
+            {
+                gameObject.SetActive(false); 
+            }
         }
     }
 }

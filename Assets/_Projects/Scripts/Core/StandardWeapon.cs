@@ -10,7 +10,7 @@ public class StandardWeapon : IWeapon
         if (bullet != null)
         {
             bullet.transform.position = spawnPosition;
-            bullet.transform.rotation = Quaternion.identity; 
+            bullet.transform.rotation = GameObject.FindAnyObjectByType<PlayerController>().transform.rotation; 
             bullet.SetActive(true); 
         }
     }
