@@ -35,7 +35,20 @@ public class EnemySpawner : MonoBehaviour
                 float randomX = Random.Range(-5f, 5f);
                 enemy.transform.position = new Vector3(randomX, 6f, 0f);
                 
+                EliteEnemyDecorator oldDecorator = enemy.GetComponent<EliteEnemyDecorator>();
+                if (oldDecorator != null)
+                {
+                    Destroy(oldDecorator);
+                    SpriteRenderer sRenderer = enemy.GetComponent<SpriteRenderer>();
+                    if (sRenderer != null) sRenderer.color = Color.white; 
+                }
+
                 enemy.SetActive(true);
+
+                if (Random.value <= 0.3f)
+                {
+                    enemy.AddComponent<EliteEnemyDecorator>();
+                }
             }
         }
     }
