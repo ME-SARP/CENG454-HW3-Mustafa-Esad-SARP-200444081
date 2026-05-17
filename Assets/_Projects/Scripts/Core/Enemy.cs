@@ -42,8 +42,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        Debug.Log(gameObject.name + " yok edildi!");
-        Destroy(gameObject);
+        Debug.Log(gameObject.name + " pasif hale getirildi (Havuza dondu)!");
+        gameObject.SetActive(false); 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour, IDamageable
             if (coreDamageable != null)
             {
                 coreDamageable.TakeDamage(damageToCore);
-                Destroy(gameObject);
+                gameObject.SetActive(false); 
             }
         }
     }
